@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.tiny.cloud/1/v717aooysz6ughw1b7i2ml7gfelxoavd7ox8weqvy081bgir/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
+  <!-- <script src="./plugins/tinyMCE/tinymce.js"></script> -->
+  <!-- <script src="./plugins/tinyMCE/tinymce.min.js"></script> -->
+  <script src="./plugins/tinyMCE/formatpainter/plugin.min.js"></script>
+  <!-- <script src="./plugins/importword/plugin.js"></script>
+  <script src="./plugins/imagetools/plugin.js"></script>
+  <script src="./plugins/upfile/plugin.js"></script>
+  <script src="./plugins/indent2em/plugin.js"></script>
+  <script src="./plugins/layout/plugin.js"></script>
+  <script src="./plugins/letterspacing/plugin.js"></script>
+  <script src="./plugins/lineheight/plugin.js"></script>
+  <script src="./plugins/table/plugin.js"></script> -->
+
+
+  <script type="text/javascript">
+    // const useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
+
+    tinymce.init({
+      selector: 'textarea#myeditor',
+      //powerpaste casechange advcode mediaembed tableofcontents checklist tinymcespellchecker a11ychecker editimage formatpainter permanentpen pageembed tinycomments mentions advtable export footnotes mergetags autocorrect typography advtemplate tinydrive',
+      plugins: 'preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help formatpainter charmap quickbars linkchecker emoticons',
+      // tinydrive_token_provider: 'URL_TO_YOUR_TOKEN_PROVIDER',
+      // tinydrive_dropbox_app_key: 'YOUR_DROPBOX_APP_KEY',
+      // tinydrive_google_drive_key: 'YOUR_GOOGLE_DRIVE_KEY',
+      // tinydrive_google_drive_client_id: 'YOUR_GOOGLE_DRIVE_CLIENT_ID',
+      valid_children: '+div[style]',
+      mobile: {
+        // powerpaste casechange advcode mediaembed tableofcontents checklist tinymcespellchecker a11ychecker pageembed advtable footnotes mergetags autocorrect typography advtemplate mentions advlist tinydrive
+        plugins: 'preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime lists wordcount help formatpainter charmap quickbars linkchecker emoticons',
+      },
+      // menu: {
+      //   tc: {
+      //     title: 'Comments',
+      //     items: 'addcomment showcomments deleteallconversations'
+      //   }
+      // },
+      menubar: 'file edit view insert format tools table tc help',
+      //toolbar: "undo redo | blocks fontsizeinput | upfile | hr bold italic | align numlist bullist | link image | table media pageembed | lineheight  outdent indent | strikethrough forecolor backcolor formatpainter removeformat | charmap emoticons checklist | code fullscreen preview | save print export | pagebreak anchor codesample footnotes mergetags | addtemplate inserttemplate | addcomment showcomments | ltr rtl casechange | spellcheckdialog a11ycheck",
+      toolbar: "table hr formatpainter bold codesample blockquote fontsizeinput | forecolor backcolor | align numlist bullist lineheight | outdent indent | anchor | fullscreen | save",
+      autosave_ask_before_unload: true,
+      autosave_interval: '30s',
+      // autosave_prefix: '{path}{query}-{id}-',
+      // autosave_prefix: 'tinymce-autosave-{./}-{newfile1.html}-',
+      autosave_restore_when_empty: false,
+      autosave_retention: '2m',
+      image_advtab: true,
+      typography_rules: [
+        'common/punctuation/quote',
+        'en-US/dash/main',
+        'common/nbsp/afterParagraphMark',
+        'common/nbsp/afterSectionMark',
+        'common/nbsp/afterShortWord',
+        'common/nbsp/beforeShortLastNumber',
+        'common/nbsp/beforeShortLastWord',
+        'common/nbsp/dpi',
+        'common/punctuation/apostrophe',
+        'common/space/delBeforePunctuation',
+        'common/space/afterComma',
+        'common/space/afterColon',
+        'common/space/afterExclamationMark',
+        'common/space/afterQuestionMark',
+        'common/space/afterSemicolon',
+        'common/space/beforeBracket',
+        'common/space/bracket',
+        'common/space/delBeforeDot',
+        'common/space/squareBracket',
+        'common/number/mathSigns',
+        'common/number/times',
+        'common/number/fraction',
+        'common/symbols/arrow',
+        'common/symbols/cf',
+        'common/symbols/copy',
+        'common/punctuation/delDoublePunctuation',
+        'common/punctuation/hellip'
+      ],
+      typography_ignore: ['code'],
+      link_list: [
+        { title: 'My page 1', value: 'https://www.tiny.cloud' },
+        { title: 'My page 2', value: 'http://www.moxiecode.com' }
+      ],
+      image_list: [
+        { title: 'My page 1', value: 'https://www.tiny.cloud' },
+        { title: 'My page 2', value: 'http://www.moxiecode.com' }
+      ],
+      image_class_list: [
+        { title: 'None', value: '' },
+        { title: 'Some class', value: 'class-name' }
+      ],
+      importcss_append: true,
+      height: 750,
+      image_caption: true,
+      quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+      noneditable_class: 'mceNonEditable',
+      toolbar_mode: 'sliding',
+      // spellchecker_ignore_list: ['Ephox', 'Moxiecode', 'tinymce', 'TinyMCE'],
+      contextmenu: 'link image editimage table configurepermanentpen',
+      // a11y_advanced_options: true,
+      // skin: useDarkMode ? 'oxide-dark' : 'oxide',
+      // content_css: useDarkMode ? 'dark' : 'default',
+      file_callback: function (file, succFun) {
+        // 自定义处理文件操作部分
+        succFun(url, { text: 'xx.pdf' }) //成功回调函数 text 显示的文本
+      },
+      save_onsavecallback: () => {
+        var ihtml = tinyMCE.activeEditor.getContent();
+        // 创建一个 XMLHttpRequest 对象
+        var xhr = new XMLHttpRequest();
+        // 定义请求方法、URL 和异步标志
+        xhr.open('POST', 'save.php', true);
+        // 设置请求头
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // 定义回调函数，处理响应结果
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            console.log(xhr.responseText);
+          }
+        };
+        // 获取要传递的值
+        var value = ihtml;
+        // 将值编码为 URL 格式
+        var encodedValue = encodeURIComponent(value);
+        // 发送请求并传递值
+        xhr.send('value=' + encodedValue);
+      },
+    });
+  </script>
+</head>
+
+<body>
+  <textarea id="myeditor">test</textarea>
+  <script>
+    function loadFile(filePath) {
+      var result = null;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", filePath, false);
+      xmlhttp.send();
+      if (xmlhttp.status == 200) {
+        result = xmlhttp.responseText;
+      }
+      return result;
+    }
+    var myStuff = loadFile("newfile.html");
+    myeditor.innerHTML = myStuff;
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.tiny.cloud/1/v717aooysz6ughw1b7i2ml7gfelxoavd7ox8weqvy081bgir/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
+  <!-- <script src="./plugins/tinyMCE/tinymce.js"></script> -->
+  <!-- <script src="./plugins/tinyMCE/tinymce.min.js"></script> -->
+  <script src="./plugins/tinyMCE/formatpainter/plugin.min.js"></script>
+  <!-- <script src="./plugins/importword/plugin.js"></script>
+  <script src="./plugins/imagetools/plugin.js"></script>
+  <script src="./plugins/upfile/plugin.js"></script>
+  <script src="./plugins/indent2em/plugin.js"></script>
+  <script src="./plugins/layout/plugin.js"></script>
+  <script src="./plugins/letterspacing/plugin.js"></script>
+  <script src="./plugins/lineheight/plugin.js"></script>
+  <script src="./plugins/table/plugin.js"></script> -->
+
+
+  <script type="text/javascript">
+    // const useDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // const isSmallScreen = window.matchMedia('(max-width: 1023.5px)').matches;
+
+    tinymce.init({
+      selector: 'textarea#myeditor',
+      fullscreen_native: true, //设置本机全屏 默认false
+      width: '100%', //  设置富文本编辑器宽度
+      //height: '100%', //  设置富文本编辑器高度
+      height: 800,
+      // language_url: './tinymce/langs/zh_Hans.js', // 中文化 默认为英文
+      // language: 'zh_CN', // 设置富文本编辑器语言
+      valid_children: '+div[style]', //带格式插入内容
+      menubar: false, // 设置富文本编辑器菜单, 默认true
+      // menubar: 'file edit view insert format tools table tc help',
+      resize: false, // 调节编辑器大小 默认 true
+      branding: false, // 关闭底部官网提示 默认true
+      statusbar: true, // 显示底部状态栏 默认true
+      readonly: false, // 设置只读属性 默认 false
+      placeholder: '开始编写吧', // 占位符
+      content_css: `/tinymce/skins/content/default`, // 富文本编辑器内容区域样式
+      content_style: 'body, p{font-size: 20px}', // 为内容区编辑自定义css样式
+      plugins: 'textpattern preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help formatpainter charmap quickbars linkchecker emoticons',
+      mobile: {
+        plugins: 'preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime lists wordcount help formatpainter charmap quickbars linkchecker emoticons',
+      },
+      toolbar: "table hr formatpainter bold codesample blockquote fontsizeinput | forecolor backcolor | align numlist bullist lineheight | outdent indent | anchor | fullscreen | save",
+      quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+      noneditable_class: 'mceNonEditable',
+      toolbar_mode: 'sliding',
+      contextmenu: 'link image editimage table configurepermanentpen', //上下文菜单
+      // autosave_ask_before_unload: true, // 阻止有内容时浏览器阻塞行为, 默认 true  需引入插件autosave
+      // autosave_interval: '3s', // 设置自动保存为草稿时间 单位只能为s 需引入插件autosave
+      // // autosave_prefix: `editor_${_this.$route.path}`, // 设置自动保存为草稿时前缀 本地localStorage中存储  需引入插件autosave
+      // autosave_retention: '300m', // 自动草稿的有效期 单位只能为m  需引入插件autosave
+      // contextmenu: 'copy paste cut link', // 上下文菜单 默认 false
+      // draggable_modal: true, // 模态框拖动 默认false
+      theme: 'silver', // 主题 必须引入
+      skin_url: './tinymce/skins/ui/oxide', // 主题路径
+      icons: 'custom',  // 自定义图标名称
+      icons_url: './tinymce/icons/icons.js', // 自定义图标路径
+      textpattern_patterns: [ // 快速排版  类似于markdown 需引入插件textpattern
+        { start: '*', end: '*', format: 'italic' },
+        { start: '**', end: '**', format: 'bold' },
+        { start: '#', format: 'h1' },
+        { start: '##', format: 'h2' },
+        { start: '###', format: 'h3' },
+        { start: '####', format: 'h4' },
+        { start: '#####', format: 'h5' },
+        { start: '######', format: 'h6' },
+        { start: '1. ', cmd: 'InsertOrderedList' },
+        { start: '* ', cmd: 'InsertUnorderedList' },
+        { start: '- ', cmd: 'InsertUnorderedList' }
+      ],
+      // skin: useDarkMode ? 'oxide-dark' : 'oxide',
+      // content_css: useDarkMode ? 'dark' : 'default',
+      // images_upload_handler: (blobInfo, success, failure) => {
+      //   // 发送请求, 获取图片路径后, 将路径传给success
+      //   success('http://pic.sc.chinaz.com/files/pic/pic9/202005/apic25209.jpg')
+      // }, // 图片上传函数 需引入插件image
+      // image_advtab: true, // 为上传图片窗口添加高级属性 需引入插件image
+      // paste_data_images: true, // 粘贴data格式的图像 需引入插件paste 谷歌浏览器无法粘贴
+      // paste_as_text: true, // 默认粘贴为文本 需引入插件paste 谷歌浏览器无法粘贴
+      // templates: [{ title: '标题', description: '描述', content: '内容' }], // 内容模板 需引入插件templates
+      // visual: false, // 颜色辅助
+      // quickbars_selection_toolbar: 'bold italic underline strikethrough | link h2 h3 h4 blockquote', // 设置 快速选择 触发提供的工具栏 需引入插件  默认 'alignleft aligncenter alignright' 设置为false禁用
+      // quickbars_insert_toolbar: 'quickimage quicktable', // 设置 快速插入 触发提供的工具栏 需引入插件quickbars 默认 quickimage quicktable 设置为false禁用
+      // // init_instance_callback: editor => { // 初始化结束后执行, 里面实现双向数据绑定功能
+      // //   if (_this.value) {
+      // //     editor.setContent(_this.value)
+      // //   }
+      // //   _this.hasInit = true
+      // //   editor.on('Input undo redo Change execCommand SetContent', (e) => {
+      // //     _this.hasChange = true
+      // //     // editor.getContent({ format: ''text }) // 获取纯文本
+      // //     _this.$emit('change', editor.getContent())
+      // //   })
+      // // },
+      // setup: (editor) => { // 初始化前执行
+      //   // 监听鼠标按下事件
+      //   editor.on('keydown', (e) => {
+      //     if (e.keyCode === 9) {
+      //       if (e.shiftKey) {
+      //         editor.execCommand('Outdent')
+      //       } else {
+      //         editor.execCommand('Indent')
+      //       }
+      //       e.preventDefault()
+      //       e.stopPropagation()
+      //     }
+      //   })
+      //   // 注册自定义上传按钮
+      //   editor.ui.registry.addButton('upload', {
+      //     text: `<i class="el-icon-upload" style="font-size: 24px"></i>`,
+      //     tooltip: '自定义上传',
+      //     onAction: () => {
+      //       _this.config.show = true
+      //     }
+      //   })
+      //   // 注册获取内容按钮
+      //   editor.ui.registry.addButton('submit', {
+      //     text: `<i class="el-icon-position" style="font-size: 18px"></i>`,
+      //     tooltip: '获取内容',
+      //     onAction: () => {
+      //       console.log(editor.getContent())
+      //     }
+      //   })
+      //   // 注册清空内容按钮
+      //   editor.ui.registry.addButton('empty', {
+      //     text: `<i class="el-icon-close" style="font-size: 18px"></i>`,
+      //     tooltip: '清空内容',
+      //     onAction: () => {
+      //       _this.content = ''
+      //       editor.setContent('')
+      //     }
+      //   })
+      // },
+      autosave_ask_before_unload: true,
+      autosave_interval: '30s',
+      // autosave_prefix: '{path}{query}-{id}-',
+      // autosave_prefix: 'tinymce-autosave-{./}-{newfile1.html}-',
+      autosave_restore_when_empty: false,
+      autosave_retention: '2m',
+      image_advtab: true,
+      importcss_append: true,
+      image_caption: true,
+      file_callback: function (file, succFun) {
+        // 自定义处理文件操作部分
+        succFun(url, { text: 'xx.pdf' }) //成功回调函数 text 显示的文本
+      },
+      save_onsavecallback: () => {
+        var ihtml = tinyMCE.activeEditor.getContent();
+        // 创建一个 XMLHttpRequest 对象
+        var xhr = new XMLHttpRequest();
+        // 定义请求方法、URL 和异步标志
+        xhr.open('POST', 'save.php', true);
+        // 设置请求头
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // 定义回调函数，处理响应结果
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            console.log(xhr.responseText);
+          }
+        };
+        // 获取要传递的值
+        var value = ihtml;
+        // 将值编码为 URL 格式
+        var encodedValue = encodeURIComponent(value);
+        // 发送请求并传递值
+        xhr.send('value=' + encodedValue);
+      },
+    });
+  </script>
+</head>
+
+<body>
+  <textarea id="myeditor">test</textarea>
+  <script>
+    function loadFile(filePath) {
+      var result = null;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", filePath, false);
+      xmlhttp.send();
+      if (xmlhttp.status == 200) {
+        result = xmlhttp.responseText;
+      }
+      return result;
+    }
+    var myStuff = loadFile("newfile.html");
+    myeditor.innerHTML = myStuff;
+  </script>
+</body>
+
+</html>
